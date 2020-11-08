@@ -38,12 +38,19 @@
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock x:Name="work" Text="Time for work:" TextWrapping="Wrap" Canvas.Left="28" Canvas.Top="10" FontSize="25" Margin="11" Foreground="Crimson"/>
+            <TextBlock Text="Time for work:" TextWrapping="Wrap" Canvas.Left="28" Canvas.Top="10" FontSize="25" Margin="11" Foreground="Crimson"/>
             <TextBlock x:Name="relax" Text= "Time for relax:" TextWrapping="Wrap" FontSize="25" Canvas.Left="39" Canvas.Top="79" Margin="2 10" Foreground="Crimson"/>
-            <TextBox Name="Work" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_PreviewTextInput" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="24" Height="30" Width="61"></TextBox>
+            <TextBox x:Name="TextBox1" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_PreviewTextInput" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="24" Height="30" Width="61"></TextBox>
             <TextBox Name="Relax" PreviewKeyDown="TextBox_PreviewKeyDown2" PreviewTextInput="TextBox_PreviewTextInput2" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="92" Height="30" Width="61"></TextBox>
             <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="21" Foreground="Crimson"/>
             <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="89" Foreground="Crimson"/>
+            <TextBlock x:Name="Timer1" Text="0" FontSize="50"  Canvas.Left="535" Canvas.Top="189"/>
+            <Button x:Name="StartW" Content="Start" Canvas.Left="484" Canvas.Top="395" Click="StartWork"/>
+            <Button x:Name="StopW" Content="Stop" Canvas.Left="574" Canvas.Top="395" Click="StopWork"/>
+            <Button x:Name="RestartWork" Content="Restart" Canvas.Left="528" Canvas.Top="395" Click="RestartButtonWork"/>
+            <TextBlock x:Name="Timer2" FontSize="50" Text="0" Canvas.Left="728" Canvas.Top="189"/>
+            <Button x:Name="StartR" Content="Start" Canvas.Left="671" Canvas.Top="395" Click="StartRlx"/>
+            <Button x:Name="StopR" Content="Stop" Height="20" Canvas.Left="757" Canvas.Top="395" Click="StopRlx"/>
         </Canvas>
     </Grid>
 </Window>
