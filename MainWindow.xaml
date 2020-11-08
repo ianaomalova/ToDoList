@@ -1,0 +1,49 @@
+﻿<Window x:Class="TasksList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TasksList"
+        mc:Ignorable="d"
+        Title="Planner Pomodoro" Height="500" Width="850" ResizeMode="NoResize" Loaded="Window_Loaded" >
+    <Grid >
+        <Canvas Margin="0,0,0.333,-0.333">
+            <Canvas.Background>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="MistyRose" Geometry="M 1,1 L 0,1 0,0 1,1"/>
+                                <GeometryDrawing Brush="LightPink" Geometry="M 0,0 L 1,1 1,0 0,0"/>
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Canvas.Background>
+            <Rectangle Opacity="0.7" Fill="Red" Width="166" Height="269" RadiusX="15" RadiusY="15" Canvas.Left="467" Canvas.Top="167" />
+            <Rectangle Opacity="0.7" Fill="Red" Width="166" Height="269" RadiusX="15" RadiusY="15" Canvas.Left="652" Canvas.Top="167" RenderTransformOrigin="0.495,0.823" />
+            <Rectangle Opacity="0.7" Fill="IndianRed" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="10">
+
+            </Rectangle>
+            <Rectangle Opacity="0.7" Fill="IndianRed" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="79">
+
+            </Rectangle>
+            <DataGrid x:Name="Tasks" Background="Salmon" Opacity="0.7" Height="305" Width="439" Canvas.Left="10" Canvas.Top="144" AutoGenerateColumns="False" GridLinesVisibility="Vertical" RowBackground="Pink" AlternatingRowBackground="AliceBlue">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="Done" Width="65" IsReadOnly="False" Binding="{Binding Path= IsDone, UpdateSourceTrigger=PropertyChanged}" >
+
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn  Header="Tasks" Width="*" IsReadOnly="False" Binding="{Binding Path= Text}">
+
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock x:Name="work" Text="Time for work:" TextWrapping="Wrap" Canvas.Left="28" Canvas.Top="10" FontSize="25" Margin="11" Foreground="Crimson"/>
+            <TextBlock x:Name="relax" Text= "Time for relax:" TextWrapping="Wrap" FontSize="25" Canvas.Left="39" Canvas.Top="79" Margin="2 10" Foreground="Crimson"/>
+            <TextBox Name="Work" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_PreviewTextInput" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="24" Height="30" Width="61"></TextBox>
+            <TextBox Name="Relax" PreviewKeyDown="TextBox_PreviewKeyDown2" PreviewTextInput="TextBox_PreviewTextInput2" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="92" Height="30" Width="61"></TextBox>
+            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="21" Foreground="Crimson"/>
+            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="89" Foreground="Crimson"/>
+        </Canvas>
+    </Grid>
+</Window>
