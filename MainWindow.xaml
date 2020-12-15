@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:TasksList"
         mc:Ignorable="d"
         Title="Planner Pomodoro" Height="500" Width="850" ResizeMode="NoResize" Loaded="Window_Loaded" >
+
     <Grid >
-        <Canvas Margin="0,0,0.333,-0.333">
+        <Canvas Margin="0,-6,0,6">
             <Canvas.Background>
                 <DrawingBrush>
                     <DrawingBrush.Drawing>
@@ -20,17 +21,56 @@
                     </DrawingBrush.Drawing>
                 </DrawingBrush>
             </Canvas.Background>
-            <Rectangle Opacity="0.7" Fill="Red" Width="166" Height="269" RadiusX="15" RadiusY="15" Canvas.Left="467" Canvas.Top="167" />
-            <Rectangle Opacity="0.7" Fill="Red" Width="166" Height="269" RadiusX="15" RadiusY="15" Canvas.Left="652" Canvas.Top="167" RenderTransformOrigin="0.495,0.823" />
-            <Rectangle Opacity="0.7" Fill="IndianRed" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="10">
 
+            <Rectangle  Fill="White" Width="368" Height="123" RadiusX="15" RadiusY="15" Canvas.Left="462" Canvas.Top="10">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
             </Rectangle>
-            <Rectangle Opacity="0.7" Fill="IndianRed" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="79">
+            <Image Source="Images/rabbitone.jpg" Canvas.Left="451" Canvas.Top="10" Height="123" Width="139">
+            </Image>
+            <Rectangle  Fill="White" Width="43" Height="123" Canvas.Left="562" Canvas.Top="10" />
+            <Rectangle  Fill="Pink" Width="242" Height="102" RadiusX="15" RadiusY="15" Canvas.Left="575" Canvas.Top="20">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <TextBlock Text="One of the most serious losses is the loss of time." TextAlignment="Center" TextWrapping="Wrap" Canvas.Left="575" Canvas.Top="33" FontSize="20" FontFamily="DejaVu Serif" FontStretch="Medium" FontStyle="Italic" Foreground="Firebrick" Height="78" Width="234">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="4" Color="LightGray" Opacity="0.9" BlurRadius="8"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
+            <Rectangle Opacity="0.7"  Fill="Red" Width="157" Height="260" RadiusX="15" RadiusY="15" Canvas.Left="484" Canvas.Top="167">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
             </Rectangle>
-            <DataGrid x:Name="Tasks" Background="Salmon" Opacity="0.7" Height="305" Width="439" Canvas.Left="10" Canvas.Top="144" AutoGenerateColumns="False" GridLinesVisibility="Vertical" RowBackground="Pink" AlternatingRowBackground="AliceBlue">
+            <Rectangle Opacity="0.7" Fill="Red" Width="157" Height="260" RadiusX="15" RadiusY="15" Canvas.Left="652" Canvas.Top="167" RenderTransformOrigin="0.495,0.823">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle Opacity="0.7" Fill="Pink" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="10">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle Opacity="0.7" Fill="Pink" Height="55" Width="347" RadiusX="13" RadiusY="13" Canvas.Left="28" Canvas.Top="79">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <Rectangle Opacity="0.7"  Fill="Red" Width="429" Height="318" RadiusX="15" RadiusY="15" Canvas.Left="28" Canvas.Top="144">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="80" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <DataGrid x:Name="Tasks" FontSize="20" FontFamily="DejaVu Serif" Background="Salmon" Foreground="Firebrick" Opacity="0.9" Height="275" Width="430" Canvas.Left="28" Canvas.Top="165" AutoGenerateColumns="False" GridLinesVisibility="Vertical" RowBackground="Pink" AlternatingRowBackground="AliceBlue">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="Done" Width="65" IsReadOnly="False" Binding="{Binding Path= IsDone, UpdateSourceTrigger=PropertyChanged}" >
+                    <DataGridCheckBoxColumn Header="Done" Width="80" IsReadOnly="False" Binding="{Binding Path= IsDone, UpdateSourceTrigger=PropertyChanged}" >
 
                     </DataGridCheckBoxColumn>
                     <DataGridTextColumn  Header="Tasks" Width="*" IsReadOnly="False" Binding="{Binding Path= Text}">
@@ -38,19 +78,153 @@
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock Text="Time for work:" TextWrapping="Wrap" Canvas.Left="28" Canvas.Top="10" FontSize="25" Margin="11" Foreground="Crimson"/>
-            <TextBlock x:Name="relax" Text= "Time for relax:" TextWrapping="Wrap" FontSize="25" Canvas.Left="39" Canvas.Top="79" Margin="2 10" Foreground="Crimson"/>
-            <TextBox x:Name="TextBox1" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_PreviewTextInput" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="24" Height="30" Width="61"></TextBox>
-            <TextBox Name="Relax" PreviewKeyDown="TextBox_PreviewKeyDown2" PreviewTextInput="TextBox_PreviewTextInput2" Background="AntiqueWhite" Foreground="Red" FontSize="25" Canvas.Left="215" Canvas.Top="92" Height="30" Width="61"></TextBox>
-            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="21" Foreground="Crimson"/>
-            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="25" Canvas.Left="296" Canvas.Top="89" Foreground="Crimson"/>
-            <TextBlock x:Name="Timer1" Text="0" FontSize="50"  Canvas.Left="535" Canvas.Top="189"/>
-            <Button x:Name="StartW" Content="Start" Canvas.Left="484" Canvas.Top="395" Click="StartWork"/>
-            <Button x:Name="StopW" Content="Stop" Canvas.Left="574" Canvas.Top="395" Click="StopWork"/>
-            <Button x:Name="RestartWork" Content="Restart" Canvas.Left="528" Canvas.Top="395" Click="RestartButtonWork"/>
-            <TextBlock x:Name="Timer2" FontSize="50" Text="0" Canvas.Left="728" Canvas.Top="189"/>
-            <Button x:Name="StartR" Content="Start" Canvas.Left="671" Canvas.Top="395" Click="StartRlx"/>
-            <Button x:Name="StopR" Content="Stop" Height="20" Canvas.Left="757" Canvas.Top="395" Click="StopRlx"/>
+            <TextBlock Text="Time for work:" TextWrapping="Wrap" Canvas.Left="38" Canvas.Top="26" FontSize="21" FontFamily="DejaVu Serif" FontWeight="Bold" Foreground="Firebrick"/>
+            <TextBlock x:Name="relax" Text= "Time for relax:" TextWrapping="Wrap" FontSize="21" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="37" Canvas.Top="93" Foreground="Firebrick"/>
+
+            <Border BorderBrush="Salmon" BorderThickness="5" Canvas.Left="218" Canvas.Top="18" CornerRadius="10,10,10,10">
+                <TextBox x:Name="TextBox1" PreviewKeyDown="TextBox_PreviewKeyDown" PreviewTextInput="TextBox_PreviewTextInput" Background="AntiqueWhite" Foreground="Firebrick" FontSize="19" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="218" Canvas.Top="24" Height="28" Width="61">
+                    <TextBox.Effect>
+                        <DropShadowEffect BlurRadius="40" Color="DarkGray" ShadowDepth="0"/>
+                    </TextBox.Effect>
+                </TextBox>
+            </Border>
+            <Border BorderBrush="Salmon" BorderThickness="5" Canvas.Left="218" Canvas.Top="86" CornerRadius="10,10,10,10">
+                <TextBox Name="Relax" PreviewKeyDown="TextBox_PreviewKeyDown2" PreviewTextInput="TextBox_PreviewTextInput2" Background="AntiqueWhite" Foreground="Firebrick" FontSize="19" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="218" Canvas.Top="92" Height="28" Width="61">
+                    <TextBox.Effect>
+                        <DropShadowEffect BlurRadius="40" Color="DarkGray" ShadowDepth="0"/>
+                    </TextBox.Effect>
+                </TextBox>
+            </Border>
+            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" FontFamily="DejaVu Serif" Canvas.Left="298" Canvas.Top="22" Foreground="Firebrick"/>
+            <TextBlock Text= "min" TextWrapping="Wrap" FontSize="24" FontWeight="Bold" FontFamily="DejaVu Serif" Canvas.Left="298" Canvas.Top="91" Foreground="Firebrick"/>
+            <TextBlock x:Name="Timer1" FontSize="30" FontFamily="DejaVu Serif"  Text="00:00:00" Canvas.Left="495" Canvas.Top="228" Foreground="AntiqueWhite"/>
+            <TextBlock x:Name="work" Text= "Work" TextWrapping="Wrap" FontSize="30" FontStretch="Normal" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="515" Canvas.Top="187" Foreground="AntiqueWhite" RenderTransformOrigin="0.505,3.399"/>
+            <TextBlock x:Name="timeWork" Text= "Time" TextWrapping="Wrap" FontSize="25" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="525" Canvas.Top="307" Foreground="AntiqueWhite" RenderTransformOrigin="0.505,3.399"/>
+            <Button x:Name="StartW" Width="40" Height="40" Canvas.Left="494" Canvas.Top="360" Click="StartWork" BorderThickness="1">
+                <Image Source="pusk.jpg" Width="28" Height="28"/>
+                <Button.Template>
+                    <ControlTemplate  TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="White"></Ellipse>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="50" Color="DarkRed" ShadowDepth="0"/>
+                </Button.Effect>
+            </Button>
+
+            <Button x:Name="StopW" Width="40" Height="40" Canvas.Left="591" Canvas.Top="358" Click="StopWork" BorderThickness="1">
+                <Image Source="stop.jpg" Width="15" Height="15"/>
+                <Button.Template>
+                    <ControlTemplate  TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="White"></Ellipse>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="50" Color="DarkRed" ShadowDepth="0"/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="RestartWork" Width="40" Height="40" Canvas.Left="542" Canvas.Top="360" Click="RestartButtonWork" BorderThickness="1">
+                <Image Source="repeat.jpg" Width="30" Height="32"/>
+                <Button.Template>
+                    <ControlTemplate  TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="White"></Ellipse>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="50" Color="DarkRed" ShadowDepth="0"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock x:Name="Timer2" FontSize="30" FontFamily="DejaVu Serif"  Text="00:00:00" Canvas.Left="663" Canvas.Top="228" Foreground="AntiqueWhite"/>
+            <TextBlock x:Name="relax1" Text= "Relax" TextWrapping="Wrap" FontStretch="Normal" FontSize="30" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="683" Canvas.Top="187" Foreground="AntiqueWhite" RenderTransformOrigin="0.505,3.399"/>
+            <TextBlock x:Name="timeRelax" Text= "Time" TextWrapping="Wrap" FontSize="25" FontFamily="DejaVu Serif" FontWeight="Bold" Canvas.Left="697" Canvas.Top="307" Foreground="AntiqueWhite" RenderTransformOrigin="0.505,3.399"/>
+            <Button x:Name="StartR" Width="40" Height="40" Canvas.Left="667" Canvas.Top="360" Click="StartRlx" BorderThickness="1">
+                <Image Source="pusk.jpg" Width="28" Height="28"/>
+                <Button.Template>
+                    <ControlTemplate  TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="White"></Ellipse>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="50" Color="DarkRed" ShadowDepth="0"/>
+                </Button.Effect>
+            </Button>
+            <Button x:Name="StopR" Width="40" Height="40" Canvas.Left="752" Canvas.Top="358" Click="StopRlx" BorderThickness="1">
+                <Image Source="stop.jpg" Width="15" Height="15"/>
+                <Button.Template>
+                    <ControlTemplate  TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="White"></Ellipse>
+                            <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="50" Color="DarkRed" ShadowDepth="0"/>
+                </Button.Effect>
+            </Button>
+
+            <TextBlock x:Name="developed" Text= "Developed by Alisa and Iana 2020" TextWrapping="Wrap" FontSize="15" FontStretch="Normal" FontFamily="DejaVu Serif" Canvas.Left="567" Canvas.Top="442" Foreground="Firebrick" RenderTransformOrigin="0.505,3.399">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="4" Color="LightGray" Opacity="0.9" BlurRadius="4"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <Rectangle x:Name="RectangleGoodJob"  Fill="Pink" Width="142" Height="43" RadiusX="15" RadiusY="15" Canvas.Left="492" Canvas.Top="261" Opacity="0">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle x:Name="GoodJ" Fill="White" Width="35" Height="35" RadiusX="15" RadiusY="15" Canvas.Left="589" Canvas.Top="265" Opacity="0">
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="DarkRed" Opacity="0.9" BlurRadius="20"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <TextBlock x:Name="Good" Text="Good job!" FontSize="16" FontFamily="DejaVu Serif" Foreground="Firebrick" Canvas.Left="507" Canvas.Top="274" Opacity="0">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="4" Color="DarkRed" Opacity="0.9" BlurRadius="10"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Image x:Name="GoodJob" Source="good.jpg" Canvas.Left="594" Canvas.Top="270" Height="25" Width="25" Opacity="0">
+            </Image>
+
+
+
+            <Rectangle x:Name="RectangleTimetoWork"  Fill="Pink" Width="142" Height="43" RadiusX="15" RadiusY="15"  Opacity="0" Canvas.Left="661" Canvas.Top="261">
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="25" Color="DarkRed" ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle x:Name="TimeWork" Fill="White" Width="35" Height="35" RadiusX="15" RadiusY="15" Opacity="0" Canvas.Left="759" Canvas.Top="265">
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="DarkRed" Opacity="0.9" BlurRadius="20"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <TextBlock x:Name="TimetoWork" TextAlignment="Center" FontSize="16" FontFamily="DejaVu Serif" Foreground="Firebrick" Canvas.Left="652" Canvas.Top="264" Opacity="0" Height="37" Width="134">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="4" Color="DarkRed" Opacity="0.9" BlurRadius="10"/>
+                </TextBlock.Effect><Run Text="Time "/><LineBreak/><Run Text="to work!"/></TextBlock>
+            <Image x:Name="Book" Source="book.jpg" Height="30" Width="30" Opacity="0" Canvas.Left="761" Canvas.Top="268">
+            </Image>
+
         </Canvas>
     </Grid>
 </Window>
+
+

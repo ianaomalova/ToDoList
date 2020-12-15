@@ -30,8 +30,10 @@ namespace TasksList
         const int MinTimerCounter = -1;
         DispatcherTimer _dispTimer1;
         DispatcherTimer _dispTimer2;
+        TimeSpan _time1;
+        TimeSpan _time2;
         int _dispTimerCounterWork;
-        int _dispTimerCounterRelax;
+        //int _dispTimerCounterRelax;
         private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
         private BindingList<ToDoModel> _toDo;
         private FileIOService _fileIOService;
@@ -47,21 +49,21 @@ namespace TasksList
             try
             {
                 _toDo = _fileIOService.LoadData();
-            } 
+            }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Close();
             }
-           
+
             Tasks.ItemsSource = _toDo;
             _toDo.ListChanged += _toDo_ListChanged;
         }
         //это событие вызывается при изменениях в дата гриде, а значит и в самом списке, так как мы на него подписаны
         private void _toDo_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if(e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
             {
                 try
                 {
@@ -109,25 +111,33 @@ namespace TasksList
             }
         }
 
-        void dispTimer_Tick1(object sender, EventArgs e)
-        {
-            //сначала выводится значение, потом инкрементируется (не для всех очевидно)
-            Timer1.Text = (_dispTimerCounterWork--).ToString();
-            if (_dispTimerCounterWork == MinTimerCounter)
-            {
-                _dispTimer1.Stop();
-                SystemSounds.Beep.Play();
-            }
 
-        }
         private void StartWork(object sender, RoutedEventArgs e)
         {
+            GoodJob.Opacity = 0;
+            Good.Opacity = 0;
+            GoodJ.Opacity = 0;
+            RectangleGoodJob.Opacity = 0;
+
             MaxTimerCounterWork = Convert.ToInt32(TextBox1.Text);
-            _dispTimerCounterWork = MaxTimerCounterWork;
-            _dispTimer1 = new DispatcherTimer();
-            _dispTimer1.Interval = TimeSpan.FromSeconds(1);
-            _dispTimer1.Tick += dispTimer_Tick1;
-            _dispTimer1.Start();
+            _time1 = TimeSpan.FromMinutes(MaxTimerCounterWork);
+
+            _dispTimer1 = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                Timer1.Text = _time1.ToString("c");
+                if (_time1 == TimeSpan.Zero)
+                {
+                    _dispTimer1.Stop();
+                    GoodJob.Opacity = 1;
+                    Good.Opacity = 1;
+                    GoodJ.Opacity = 1;
+                    RectangleGoodJob.Opacity = 1;
+                    SystemSounds.Asterisk.Play();
+                }
+                _time1 = _time1.Add(TimeSpan.FromSeconds(-1));
+            }, Application.Current.Dispatcher);
+
+            _dispTimer1.Start();     
         }
 
         private void StopWork(object sender, RoutedEventArgs e)
@@ -142,25 +152,32 @@ namespace TasksList
             _dispTimer1.Stop();
         }
 
-        void dispTimer_Tick2(object sender, EventArgs e)
-        {
-            //сначала выводится значение, потом инкрементируется (не для всех очевидно)
-            Timer2.Text = (_dispTimerCounterRelax--).ToString();
-            if (_dispTimerCounterRelax == MinTimerCounter)
-            {
-                _dispTimer2.Stop();
-                SystemSounds.Beep.Play();
-            }
-
-        }
 
         private void StartRlx(object sender, RoutedEventArgs e)
         {
+            RectangleTimetoWork.Opacity = 0;
+            TimeWork.Opacity = 0;
+            TimetoWork.Opacity = 0;
+            Book.Opacity = 0;
+
             MaxTimerCounterRelax = Convert.ToInt32(Relax.Text);
-            _dispTimerCounterRelax = MaxTimerCounterRelax;
-            _dispTimer2 = new DispatcherTimer();
-            _dispTimer2.Interval = TimeSpan.FromSeconds(1);
-            _dispTimer2.Tick += dispTimer_Tick2;
+            _time2 = TimeSpan.FromMinutes(MaxTimerCounterRelax);
+
+            _dispTimer2 = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                Timer2.Text = _time2.ToString("c");
+                if (_time2 == TimeSpan.Zero)
+                {
+                    _dispTimer2.Stop();
+                    RectangleTimetoWork.Opacity = 1;
+                    TimeWork.Opacity = 1;
+                    TimetoWork.Opacity = 1;
+                    Book.Opacity = 1;
+                    SystemSounds.Asterisk.Play();
+                }
+                _time2 = _time2.Add(TimeSpan.FromSeconds(-1));
+            }, Application.Current.Dispatcher);
+
             _dispTimer2.Start();
         }
 

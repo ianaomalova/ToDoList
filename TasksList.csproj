@@ -106,6 +106,24 @@
   <ItemGroup>
     <Resource Include="gui_calendar_planner_icon_157200.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="pusk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rabbitone.jpg" />
+    <Resource Include="repeat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="stop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rabbittwo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="good.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="book.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
