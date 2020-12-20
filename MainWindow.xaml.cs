@@ -119,7 +119,14 @@ namespace TasksList
             GoodJ.Opacity = 0;
             RectangleGoodJob.Opacity = 0;
 
-            MaxTimerCounterWork = Convert.ToInt32(TextBox1.Text);
+            if (TextBox1.Text == null || TextBox1.Text == "")
+            {
+                MaxTimerCounterWork = 0;
+                MessageBox.Show("Введи время, слепой ублюдок");
+            }
+            else {
+                MaxTimerCounterWork = Convert.ToInt32(TextBox1.Text);
+            }
             _time1 = TimeSpan.FromMinutes(MaxTimerCounterWork);
 
             _dispTimer1 = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
@@ -160,6 +167,7 @@ namespace TasksList
             TimetoWork.Opacity = 0;
             Book.Opacity = 0;
 
+            MaxTimerCounterRelax = 5;
             MaxTimerCounterRelax = Convert.ToInt32(Relax.Text);
             _time2 = TimeSpan.FromMinutes(MaxTimerCounterRelax);
 
