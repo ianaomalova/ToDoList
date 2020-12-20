@@ -122,7 +122,7 @@ namespace TasksList
             if (TextBox1.Text == null || TextBox1.Text == "")
             {
                 MaxTimerCounterWork = 0;
-                MessageBox.Show("Введи время, слепой ублюдок");
+                MessageBox.Show("Введите время");
             }
             else {
                 MaxTimerCounterWork = Convert.ToInt32(TextBox1.Text);
